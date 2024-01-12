@@ -1,6 +1,6 @@
 ﻿body {
     font-family: 'Segoe UI', 'sans-serif' !important;
-    color: black !important;
+    color: rgb(96, 94, 92) !important;
     font-size: 16px !important;
     height: 100%;
     margin: 0;
@@ -9,6 +9,22 @@
 .cm-content {
     min-height: 100%;
     margin-bottom: 20px;
+}
+
+@media (min-width: 1200px) {
+    .display-4 {
+        font-size: 2.0rem;
+    }
+
+}
+
+h1 {
+    font-weight: 600 !important;
+    color: rgb(26, 86, 127);
+}
+
+a {
+    color: rgb(247, 148, 30);
 }
 
 .cm-top-nav-bar {
@@ -20,7 +36,7 @@
 }
 
 .cm-menu-bar {
-    background-color: #F9F9F9 !important;
+    background-color: #FFF !important;
     margin-top: -168px;
 }
 
@@ -123,6 +139,8 @@
 .mt40 {
     margin-top: 40px;
 }
+
+
 
 .cm-button-default {
     color: #fff !important;
@@ -283,7 +301,7 @@
 
 .cm-table-head th {
     text-align: center;
-    background: #F9F9F9 !important;
+    background: #FFF !important;
     font-size: 14px;
 }
 
