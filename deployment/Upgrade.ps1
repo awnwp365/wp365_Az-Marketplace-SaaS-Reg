@@ -8,6 +8,7 @@
 Param(  
    [string][Parameter(Mandatory)]$WebAppNamePrefix, # Prefix used for creating web applications
    [string][Parameter(Mandatory)]$ResourceGroupForDeployment # Name of the resource group to deploy the resources
+   [string][Parameter()]$KeyVault, # Name of KeyVault
 )
 
 Function String-Between
@@ -26,7 +27,10 @@ Function String-Between
 $ErrorActionPreference = "Stop"
 $WebAppNameAdmin=$WebAppNamePrefix+"-admin"
 $WebAppNamePortal=$WebAppNamePrefix+"-portal"
-$KeyVault=$WebAppNamePrefix+"-kv"
+If ($null -eq $KeyVault) {
+	$KeyVault=$WebAppNamePrefix+"-kv"
+}
+
 
 #### THIS SECTION DEPLOYS CODE AND DATABASE CHANGES
 Write-host "#### Deploying new database ####" 
