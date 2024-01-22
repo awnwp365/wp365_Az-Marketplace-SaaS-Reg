@@ -1,10 +1,15 @@
 ﻿body {
-    font-family: 'Segoe UI', 'sans-serif' !important;
-    color: rgb(96, 94, 92) !important;
-    font-size: 16px !important;
-    height: 100%;
-    margin: 0;
+    font-family: "Segoe UI";
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0px;
+    text-align: left;
+    color: rgb(96, 94, 92);
 }
+
+
+
 
 .cm-content {
     min-height: 100%;
@@ -17,6 +22,11 @@
     }
 
 }
+
+.nav-underline a.nav-link:hover {
+    color: rgb(247, 148, 30);
+}
+
 
 h1 {
     font-weight: 600 !important;
@@ -94,14 +104,23 @@ a {
 }
 
 .cm-section-heading {
-    font-family: 'Segoe UI', 'sans-serif' !important;
-    font-size: 25px;
     background-color: #fff;
-    border-bottom: 4px solid #2180a6;
-    text-transform: uppercase;
+    border-bottom: none; /* 4px solid rgb(247, 148, 30); */
+    text-transform: capitalize;
     margin-bottom: 20px;
     line-height: 40px;
     color: black;
+    color: rgb(50, 49, 48);
+    display: inline;
+    font-family: "Segoe UI";
+    font-size: 18px;
+    font-weight: 600;
+    height: auto;
+    letter-spacing: normal;
+    line-height: 28px;
+    text-align: left;
+    width: auto;
+    -webkit-font-smoothing: antialiased;
 }
 
 .p10 {
@@ -144,7 +163,7 @@ a {
 
 .cm-button-default {
     color: #fff !important;
-    background-color: #004578;
+    background-color: rgb(247, 148, 30);
     border-color: #2e6da4;
     display: inline-block;
     font-weight: 400;
@@ -157,8 +176,8 @@ a {
     background-image: none;
     border: 1px solid transparent;
     padding: 12px 20px;
-    font-size: 16px;
-    font-weight: bold;
+    font-size: 14px;
+    font-weight: 400;
     line-height: 1.42857143;
     border-radius: 4px;
     -webkit-user-select: none;
@@ -170,12 +189,8 @@ a {
 }
 
     .cm-button-default:hover {
-        background-color: #2180a6;
-        border-radius: 5px;
-        padding: 12px 20px;
-        font-size: 18px;
-        font-weight: bold;
-        color: #004578;
+        background-color: rgb(223, 134, 27);
+        color: #fff;
     }
 
 .cm-button-error {

@@ -159,10 +159,12 @@ public class SubscriptionService
             SubscribeId = subscription.Id,
             PlanId = string.IsNullOrEmpty(subscription.AmpplanId) ? string.Empty : subscription.AmpplanId,
             OfferId = subscription.AmpOfferId,
+
+
             Term = new TermResult
             {
-                StartDate = subscription.StartDate.GetValueOrDefault(),
-                EndDate = subscription.EndDate.GetValueOrDefault(),
+                StartDate = (subscription.StartDate.HasValue && subscription.StartDate.Value == DateTime.MinValue) ? DateTimeOffset.MinValue : subscription.StartDate.GetValueOrDefault(),
+                EndDate = (subscription.EndDate.HasValue && subscription.EndDate.Value == DateTime.MinValue) ? DateTimeOffset.MinValue : subscription.EndDate.GetValueOrDefault(),
             },
             Quantity = subscription.Ampquantity,
             Name = subscription.Name,
