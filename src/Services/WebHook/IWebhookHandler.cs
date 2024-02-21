@@ -59,4 +59,11 @@ public interface IWebhookHandler
     /// <returns>Unsubscribed Async</returns>
     Task UnknownActionAsync(WebhookPayload payload);
 
+    /// <summary>
+    /// Refresh Async operation
+    /// </summary>
+    /// <param name="payload">The payload.</param>
+    /// <returns>Refresh Async</returns>
+    Task RefreshAsync(WebhookPayload payload);
+
 }

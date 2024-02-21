@@ -93,6 +93,8 @@ public class WebHookHandler : IWebhookHandler
 
     private const string AcceptSubscriptionUpdates = "AcceptSubscriptionUpdates";
 
+    private const string AcceptSubscriptionPlanChanges = "AcceptSubscriptionPlanChanges";
+
     /// <summary>
     /// Initializes a new instance of the <see cref="WebHookHandler" /> class.
     /// </summary>
@@ -183,6 +185,16 @@ public class WebHookHandler : IWebhookHandler
             this.subscriptionsLogRepository.Save(auditLog);
             throw new MarketplaceException("Plan Change rejected due to Config settings or Subscription not in database");
         }
+
+        // wp365: while the above will allow changes to plan (e.g. ChangeQuantity), we reject if the config prevents users from switching plans.
+        var _acceptSubscriptionPlanChange = Convert.ToBoolean(this.applicationConfigRepository.GetValueByName(AcceptSubscriptionPlanChanges));
+        if (!_acceptSubscriptionPlanChange && (payload?.PlanId != payload?.Subscription?.PlanId))
+        {
+            auditLog.NewValue = payload?.Subscription?.PlanId;
+            this.subscriptionsLogRepository.Save(auditLog);
+            throw new MarketplaceException("Plan Changes are blocked by Configuration setting");
+        }
+
 
         this.subscriptionService.UpdateSubscriptionPlan(payload.SubscriptionId, payload.PlanId);
         await this.applicationLogService.AddApplicationLog("Plan Successfully Changed.").ConfigureAwait(false);
@@ -357,6 +369,32 @@ public class WebHookHandler : IWebhookHandler
     public async Task UnknownActionAsync(WebhookPayload payload)
     {
         await this.applicationLogService.AddApplicationLog("Offer Received an unknown action: " + payload.Action).ConfigureAwait(false);
+
+        await Task.CompletedTask;
+    }
+
+    public async Task RefreshAsync(WebhookPayload payload)
+    {
+        var oldValue = this.subscriptionService.GetSubscriptionsBySubscriptionId(payload.SubscriptionId);
+        if (oldValue != null)
+        {
+            //fetch subscription: will throw BadRequest if not found.
+            var subscriptionData = await this.fulfillApiService.GetSubscriptionByIdAsync(payload.SubscriptionId).ConfigureAwait(false);
+            if (subscriptionData != null)
+            {
+                SubscriptionAuditLogs auditLog = new SubscriptionAuditLogs()
+                {
+                    Attribute = $"{Convert.ToString(SubscriptionLogAttributes.Status)}-RefreshAsync",
+                    SubscriptionId = oldValue.SubscribeId,
+                    OldValue = Convert.ToString(oldValue.SubscriptionStatus),
+                    NewValue = Convert.ToString(oldValue.SubscriptionStatus),
+                    CreateBy = null,
+                    CreateDate = DateTime.Now,
+                };
+                //update the subscription in the using the data retrieved from fulfillment API.
+                this.subscriptionService.AddOrUpdatePartnerSubscriptions(subscriptionData);
+            }
+        }
 
         await Task.CompletedTask;
     }

@@ -59,4 +59,10 @@ public enum WebhookAction
     /// </summary>
     [EnumMember(Value = "Transfer")]
     Transfer,
+
+    /// <summary>
+    /// Refresh
+    /// </summary>
+    [EnumMember(Value = "Refresh")]
+    Refresh,
 }

@@ -1,15 +1,12 @@
 ﻿body {
-    font-family: "Segoe UI";
-    font-size: 14px;
-    font-weight: 400;
+    font-family: "Segoe UI", "Segoe UI", "sans-serif";
+    font-size: 18px;
+    font-weight: 400;   
     line-height: 24px;
     letter-spacing: 0px;
     text-align: left;
     color: rgb(96, 94, 92);
 }
-
-
-
 
 .cm-content {
     min-height: 100%;
@@ -20,17 +17,24 @@
     .display-4 {
         font-size: 2.0rem;
     }
-
 }
 
 .nav-underline a.nav-link:hover {
     color: rgb(247, 148, 30);
 }
 
-
-h1 {
+.container h1 {
+    font-size: 28px;
     font-weight: 600 !important;
     color: rgb(26, 86, 127);
+}
+
+.container .card {
+    margin-top: 10px;
+}
+
+.container .card p, .container .card li {
+    color: rgb(96, 94, 92);
 }
 
 a {
@@ -97,23 +101,23 @@ a {
     max-height: 50px;
 }
 
-.cm-panel-default {
-    background: #F9F9F9 !important;
-    border-radius: 0px;
-    padding: 20px;
+
+.process-controls {
+    background-color: rgb(26, 86, 127);
 }
 
-.cm-section-heading {
-    background-color: #fff;
-    border-bottom: none; /* 4px solid rgb(247, 148, 30); */
-    text-transform: capitalize;
-    margin-bottom: 20px;
-    line-height: 40px;
-    color: black;
+.cm-panel-default {
+    background: #FFF !important;
+    border-radius: 0px;
+    font-size: 0.7em;
+    border: 1px solid rgb(237, 235, 233);
+}
+
+.cm-section-heading, .cm-section-subheading {
+    border-bottom: none;
     color: rgb(50, 49, 48);
     display: inline;
-    font-family: "Segoe UI";
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
     height: auto;
     letter-spacing: normal;
@@ -123,8 +127,109 @@ a {
     -webkit-font-smoothing: antialiased;
 }
 
-.p10 {
-    padding: 10px;
+.cm-section-heading {
+    text-transform: capitalize;
+    margin-bottom: 20px;
+    line-height: 40px;
+    text-transform: uppercase;
+}
+
+.container ul {
+    list-style-position: inside;
+}
+
+div.process-step {
+
+}
+
+div.process-step div.vr {
+    background-color: rgb(96, 94, 92);
+}
+
+div.process-step.finish div.vr {
+    display: none;
+}
+
+div.process-step-icon {
+    border-radius: 20px;
+    background-color: rgb(247, 148, 30);
+    width: 40px;
+    height: 40px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+div.process-step {
+    color: rgb(247, 148, 30);
+}
+
+div.process-step.completed, div.process-step.completed div.process-step-icon {
+    color: #4DB6AC;
+}
+
+div.process-step.completed div.process-step-icon {
+    background-color: #E8F5E9;
+}
+
+
+div.process-step.finish div.process-step-icon {
+    background-color: #F6F6F6;
+}
+
+div.process-step.finish, div.process-step.finish div.process-step-icon {
+    color: #8F8F8E;
+}
+
+div.process-step.pending, div.process-step.pending div.process-step-icon {
+    color: #C67618;
+}
+
+div.process-step.pending div.process-step-icon {
+    background-color: #FDEAD2;
+}
+
+div.process-step div.process-step-detail {
+    padding-left: 4px;
+    line-height: 16px;
+}
+
+div.process-step div.process-step-detail .heading {
+    color: rgb(18, 60, 89);
+    font-size: 14px;
+    font-weight: bold;
+    display: block;
+    padding: 0px;
+}
+
+div.process-step div.process-step-detail .description {
+    font-size: 0.9em;
+    font-weight: normal;
+    font-style: italic;
+}
+
+
+.cm-section-subheading {
+    font-size: 16px;
+    text-transform: none;
+}
+
+.container .cm-panel.default dl dt, .container .cm-panel.default dl dd {
+    padding: 0px !important;
+}
+
+.p-0 {
+    padding: 0px !important;
+}
+
+dl.row .p-2 {
+    padding: 0px !important;
+    line-height: normal;
+}
+
+.row {
+    margin: 0px;
 }
 
 .w286 {
@@ -162,36 +267,20 @@ a {
 
 
 .cm-button-default {
-    color: #fff !important;
+    
     background-color: rgb(247, 148, 30);
-    border-color: #2e6da4;
-    display: inline-block;
-    font-weight: 400;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    -ms-touch-action: manipulation;
-    touch-action: manipulation;
-    cursor: pointer;
-    background-image: none;
-    border: 1px solid transparent;
-    padding: 12px 20px;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.42857143;
-    border-radius: 4px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    margin-top: 25px;
-    margin-bottom: 20px;
+    
 }
 
     .cm-button-default:hover {
         background-color: rgb(223, 134, 27);
         color: #fff;
     }
+
+.cm-button-disabled, .cm-button-disabled:hover {
+    background-color: #efefef;
+    cursor: progress;
+}
 
 .cm-button-error {
     color: #fff;
@@ -220,14 +309,14 @@ a {
     margin-bottom: 20px;
 }
 
-    .cm-button-error:hover {
-        background-color: #EAE7E7 !important;
-        border-radius: 5px;
-        padding: 12px 20px;
-        font-size: 18px;
-        font-weight: bold;
-        color: #004578;
-    }
+.cm-button-error:hover {
+    background-color: #EAE7E7 !important;
+    border-radius: 5px;
+    padding: 12px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #004578;
+}
 
 .cm-button-success {
     color: #fff;
@@ -256,21 +345,19 @@ a {
     margin-bottom: 20px;
 }
 
-    .cm-button-success:hover {
-        background-color: #EAE7E7;
-        border-radius: 5px;
-        padding: 12px 20px;
-        font-size: 18px;
-        font-weight: bold;
-        color: #004578;
-    }
+.cm-button-success:hover {
+    background-color: #EAE7E7;
+    border-radius: 5px;
+    padding: 12px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #004578;
+}
 
-.cm-button-danger {
-    color: #fff;
-    background-color: #EA2333;
+div.container button {
     border-color: #2e6da4;
     display: inline-block;
-    font-weight: 400;
+    font-weight: 600;
     text-align: center;
     white-space: nowrap;
     vertical-align: middle;
@@ -279,27 +366,51 @@ a {
     cursor: pointer;
     background-image: none;
     border: 1px solid transparent;
-    padding: 12px 20px;
-    font-size: 16px;
-    font-weight: bold;
+    padding: 4px 10px;
+    font-size: 14px;
+    font-weight: 400;
     line-height: 1.42857143;
-    border-radius: 4px;
+    border-radius: 1px;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    margin-top: 25px;
-    margin-bottom: 20px;
+    margin: 15px 5px 15px 0px;
+    color: #fff;
 }
 
-    .cm-button-danger:hover {
-        background-color: #EAE7E7;
-        border-radius: 5px;
-        padding: 12px 20px;
-        font-size: 18px;
-        font-weight: bold;
-        color: #004578;
-    }
+.accordion div.accordion-item {
+    padding: 0px;
+}
+
+.accordion h2.accordion-header {
+    line-height: normal;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: #FDEAD2;
+}
+
+.accordion button.accordion-button {
+    margin: 0px !important;
+    border-color: transparent;
+    padding: 16px;
+    color: rgb(96, 94, 92);
+    text-align: left;
+}
+
+
+
+div.container button.cm-button-danger {
+    background-color: #fff;
+    color: #434040;
+    border: 1px solid #E7E7E7;
+}
+
+div.container button.cm-button-danger:hover {
+    background-color: #EAE7E7;
+    color: #004578;
+}
 
 .cm-table {
     background: #ffffff !important;

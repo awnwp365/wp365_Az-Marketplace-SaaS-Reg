@@ -50,8 +50,12 @@ public class WebhookProcessor : IWebhookProcessor
     /// <returns> Notification.</returns>
     public async Task ProcessWebhookNotificationAsync(WebhookPayload payload, SaaSApiClientConfiguration config)
     {
-        await _webNotificationService.PushExternalWebNotificationAsync(payload);
-
+        //suppress external notifications on subscription refresh events
+        if (WebhookAction.Refresh != payload?.Action)
+        {
+            await _webNotificationService.PushExternalWebNotificationAsync(payload);
+        }
+        
         switch (payload.Action)
         {
             case WebhookAction.Unsubscribe:
@@ -76,6 +80,10 @@ public class WebhookProcessor : IWebhookProcessor
 
             case WebhookAction.Renew:
                 await this.webhookHandler.RenewedAsync().ConfigureAwait(false);
+                break;
+
+            case WebhookAction.Refresh:
+                await this.webhookHandler.RefreshAsync(payload).ConfigureAwait(false);
                 break;
 
             default:
