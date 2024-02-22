@@ -73,4 +73,10 @@ public class SubscriptionResultExtension : SubscriptionResult
     /// Gets or sets a value indicating if we allow subscription updates on the customer side.
     /// </summary>
     public bool AcceptSubscriptionUpdates { get; set; }
+
+
+    /// <summary>
+    /// Gets or sets a value indicating if we allow subscription updates on the customer side.
+    /// </summary>
+    public bool AcceptSubscriptionPlanChanges { get; set; }
 }

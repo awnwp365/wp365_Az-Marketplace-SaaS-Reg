@@ -1,6 +1,6 @@
 ﻿body {
     font-family: "Segoe UI", "Segoe UI", "sans-serif";
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 400;   
     line-height: 24px;
     letter-spacing: 0px;
@@ -23,6 +23,10 @@
     color: rgb(247, 148, 30);
 }
 
+div.min-vh-1p {
+    min-height: 120px;
+}
+
 .container h1 {
     font-size: 28px;
     font-weight: 600 !important;
@@ -31,6 +35,12 @@
 
 .container .card {
     margin-top: 10px;
+}
+
+.container .card.logo {
+    background-image: url('../imgs/wp-cubes-bg-md.png');
+    background-repeat: no-repeat;
+    background-position: top right;
 }
 
 .container .card p, .container .card li {
@@ -75,7 +85,7 @@ a {
     width: 160px !important;
 }
 
-.text-white {
+main .container .text-white {
     color: white !important;
 }
 
@@ -109,7 +119,6 @@ a {
 .cm-panel-default {
     background: #FFF !important;
     border-radius: 0px;
-    font-size: 0.7em;
     border: 1px solid rgb(237, 235, 233);
 }
 
@@ -157,8 +166,14 @@ div.process-step-icon {
     height: 40px;
     color: #fff;
     display: flex;
+    font-weight: 100;
+    font-size: 1.4em;
     align-items: center;
     justify-content: center;
+}
+
+text-white {
+    color: rgb(50, 49, 48);
 }
 
 div.process-step {
@@ -183,11 +198,12 @@ div.process-step.finish, div.process-step.finish div.process-step-icon {
 }
 
 div.process-step.pending, div.process-step.pending div.process-step-icon {
-    color: #C67618;
+    color: #8F8F8E;
 }
 
 div.process-step.pending div.process-step-icon {
     background-color: #FDEAD2;
+    color: #C67618;
 }
 
 div.process-step div.process-step-detail {
@@ -393,6 +409,7 @@ div.container button {
 
 .accordion button.accordion-button {
     margin: 0px !important;
+    background-color: #FDEAD2;
     border-color: transparent;
     padding: 16px;
     color: rgb(96, 94, 92);
@@ -414,7 +431,6 @@ div.container button.cm-button-danger:hover {
 
 .cm-table {
     background: #ffffff !important;
-    font-size: 16px;
 }
 
     .cm-table th {

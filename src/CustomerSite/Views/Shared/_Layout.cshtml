@@ -31,12 +31,12 @@
             <div class="form-inline my-2 my-lg-0 ms-auto" style="padding-right:10px;">
                 @if (this.User.Identity.IsAuthenticated)
                 {
-                    <span class="cm-username text-white">@User.Identity.Name&nbsp;</span>
-                    <a class="text-white cm-logout" style="text-decoration: none;" asp-controller="Account" asp-action="SignOut">&nbsp;<i class="fa fa-sign-out fa-2x"></i></a>
+                    <span class="cm-username">@User.Identity.Name&nbsp;</span>
+                    <a class="cm-logout" style="text-decoration: none;" asp-controller="Account" asp-action="SignOut">&nbsp;<i class="fa fa-sign-out fa-2x"></i></a>
                 }
                 else
                 {
-                    <a class="text-white" style="text-decoration: none;" asp-controller="Account" asp-action="SignIn">Sign in</a>
+                    <a class="" style="text-decoration: none;" asp-controller="Account" asp-action="SignIn">Sign in</a>
                 }
             </div>
         </div>

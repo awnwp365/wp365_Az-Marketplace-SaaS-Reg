@@ -257,6 +257,7 @@ public class HomeController : BaseController
                         subscriptionExtension.SubscriptionParameters = this.subscriptionService.GetSubscriptionsParametersById(newSubscription.SubscriptionId, currentPlan.PlanGuid);
                         subscriptionExtension.IsAutomaticProvisioningSupported = Convert.ToBoolean(this.applicationConfigRepository.GetValueByName("IsAutomaticProvisioningSupported"));
                         subscriptionExtension.AcceptSubscriptionUpdates = Convert.ToBoolean(this.applicationConfigRepository.GetValueByName("AcceptSubscriptionUpdates"));
+                        subscriptionExtension.AcceptSubscriptionPlanChanges = Convert.ToBoolean(this.applicationConfigRepository.GetValueByName("AcceptSubscriptionPlanChanges"));
                     }
                 }
                 else

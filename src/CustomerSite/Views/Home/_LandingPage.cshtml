@@ -13,8 +13,8 @@
 
             <div class="card cm-panel-default mb-2" style="min-height: 500px;">
                 <div class="row">
-                    <div class="col-md-12">
-                        <span class="cm-section-heading">Subscription Details</span>
+                    <div class="col-md-12 mt-2">
+                        <h1 class="display-4">WorkPoint365 Subscription</h1>
                     </div>
                 </div>
             @if (Model != null && !string.IsNullOrEmpty(Model.ErrorMessage))
@@ -29,17 +29,33 @@
             {
                     <div class="row flex-fill">
                         <div class="col-md-8">
-                            <div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                                <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                            <div class="intro min-vh-1p pt-2 mb-4">
+                                @if (Model.SubscriptionStatus == SubscriptionStatusEnumExtension.PendingFulfillmentStart)
+                                {
+                                    <p>Welcome to your new WorkPoint Azure Subscription.</p>
+                                    <p>Please review the subscription details below. Clicking <strong>Subscribe</strong> will initiate a task with WorkPoint365 License Management to provision the solution licenses. On completion, you will receive an email with details of your license and instructions for implementation.</p>
+                                    <p>If you have any questions or concerns regarding your <strong>WorkPoint365</strong> subscription, please contact your <em>WorkPoint Partner</em> or <a href="https://workpoint365.com/products-solutions/workpoint-365">WorkPoint Sales <i class="fa fa-external-link" aria-hidden="true"></i></a></p>
+                                }
+                                else
+                                {
+                                    <p>Please review your subscription details. Any changes to subscription status will initiate a task to WorkPoint365 License Management to implement the necessary changes to license configuration or term. You will receive an email confirmation when complete.</p>
+                                    <caption><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;<em>Note</em> that Subscriptions can also be managed directly in your <a href="https://portal.azure.com">Azure Portal <i class="fa fa-external-link" aria-hidden="true"></i></a> by any user with <em>Resource Owner</em> or <em>Resource Contributor</em> role.</caption>
+                                }
                             </div>
 
                             <div class="accordion" id="subscriptionDetail">
                                 <div class="accordion-item">
                                     <h2 class="accordion-header">
                                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#subscriptionParams" aria-expanded="false" aria-controls="collapseOne">
-                                            <i class="fa fa-key" aria-hidden="true"></i>&nbsp;<strong>Subscription:</strong>&nbsp;@Html.DisplayFor(model => model.OfferId) / <em>@Html.DisplayFor(model => model.PlanId)</em>
+                                            <img src="/imgs/wp-logo-sm.png" alt="WP365"/>&nbsp;
+                                            
+                                            @if (Model.SubscriptionStatus == SubscriptionStatusEnumExtension.PendingFulfillmentStart)
+                                            {
+                                                <strong>Subscribe to:</strong>
+                                            } else {
+                                                <strong>Subscription:</strong>
+                                            }
+                                            &nbsp;@Html.DisplayFor(model => model.OfferId) / <em>@Html.DisplayFor(model => model.PlanId)</em>
                                         </button>
                                     </h2>
                                     <div id="subscriptionParams" class="accordion-collapse collapse" data-bs-parent="#subscriptionDetail">
@@ -219,59 +235,75 @@
                         </div>
                     
                     </div>
-                        <div class="col-md-4 mb-0 d-flex flex-column p-0">
-                            <div class="row flex-grow-0">
+                        <div class="col-md-4 mb-0 d-flex flex-column p-0 m-0">
+                            <div class="row flex-grow-0 mb-4">
                                 <span class="cm-section-subheading">Subscription Process</span>
-                                <span><small>Small Text</small></span>
+                                <span><small>Steps involved in the WorkPoint365 Subscription fulfillment process.</small></span>
                             </div>
                             <div class="row flex-fill">
                                 <div class="process-group">
                                     <div class="process-step completed d-flex">
                                         <div class="flex-column flex-grow-0 text-center">
                                             <div class="process-step-icon">
-                                                <i class="fa fa-check fa-2x" aria-hidden="true"></i>
+                                                <i class="fa fa-check fa-1x" aria-hidden="true"></i>
                                             </div>
                                             <div class="vr"></div>
                                         </div>
                                         <div class="process-step-detail flex-column flex-fill">
                                             <span class="heading">Create Azure Resource</span>
-                                            <span class="description"><small>Create a WP365 Resource in your Azure Subscription</small></span>
+                                            <span class="description"><small>Complete: Create a subscription to a WP365 Plan in your Azure Tenant.</small></span>
                                         </div>
                                     </div>
-                                    <div class="process-step d-flex">
+                                    <div class="process-step current d-flex">
                                         <div class="flex-column flex-grow-0 text-center">
                                             <div class="process-step-icon">
-                                                <i class="fa fa-arrow-right fa-2x" aria-hidden="true"></i>
+                                                2 <!-- <i class="fa fa-circle fa-1x" aria-hidden="true"></i>-->
                                             </div>
                                             <div class="vr"></div>
                                         </div>
                                         <div class="process-step-detail flex-column flex-fill">
-                                            <span class="heading">Confirm Subscription</span>
-                                            <span class="description"><small>Review the subscription details and click confirm to initiate the provisioning workflow.</small></span>
+                                            @if (Model.SubscriptionStatus == SubscriptionStatusEnumExtension.PendingFulfillmentStart)
+                                            {
+                                                <span class="heading">Review Subscription</span>
+                                                <span class="description"><small>Current: Review subscription details and confirm.</small></span>
+                                            }
+                                            @if (Model.SubscriptionStatus == SubscriptionStatusEnumExtension.Subscribed)
+                                            {
+                                                <span class="heading">Update Subscription</span>
+                                                <span class="description"><small>Current: Review subscription details and confirm.</small></span>
+                                            }
                                         </div>
                                      </div>
                                     <div class="process-step pending d-flex">
                                         <div class="flex-column flex-grow-0 text-center">
                                             <div class="process-step-icon">
-                                                <i class="fa fa-envelope-o fa-2x" aria-hidden="true"></i>
+                                                3 <!-- <i class="fa fa-circle-o fa-1x" aria-hidden="true"></i>-->
                                             </div>
                                             <div class="vr"></div>
                                         </div>
                                         <div class="process-step-detail flex-column flex-fill">
-                                            <span class="heading">WorkPoint Provision License</span>
-                                            <span class="description"><small>WorkPoint will provision the licenses required and deliver license key plus installer instructions by email.</small></span>
+                                            @if (Model.SubscriptionStatus == SubscriptionStatusEnumExtension.PendingFulfillmentStart)
+                                            {
+                                                <span class="heading">WorkPoint License Fulfillment</span>
+                                                <span class="description"><small>Waiting: WorkPoint will provision the licenses required and deliver license key plus installer instructions by email.</small></span>
+                                            }
+                                            @if (Model.SubscriptionStatus == SubscriptionStatusEnumExtension.Subscribed)
+                                            {
+                                                <span class="heading">WorkPoint License Update</span>
+                                                <span class="description"><small>Waiting: WorkPoint update the licenses. <em>Note:</em> unsubscriping will take effect at the end of the current subscription term.</small></span>
+                                            }
                                         </div>
                                     </div>
                                     <div class="process-step finish d-flex">
                                         <div class="flex-column flex-grow-0 text-center">
                                             <div class="process-step-icon">
-                                                <i class="fa fa-flag-o fa-2x" aria-hidden="true"></i>
+                                                <i class="fa fa-flag-o fa-1x" aria-hidden="true"></i>
                                             </div>
                                             <div class="vr"></div>
                                         </div>
                                         <div class="process-step-detail flex-column flex-fill">
                                             <span class="heading">Finish</span>
-                                            <span class="description"><small>Install WorkPoint365 in your tenant.</small></span>
+                                            <span class="description"><small>Install or use WorkPoint365.</small></span>
                                         </div>
                                     </div>
                                 </div>
@@ -303,18 +335,29 @@
 else
 {
     <div class="pt-5">
-        <div class="card p-3 ">
+        <div class="card p-3 logo">
             <div class="text-center">
                 <h1 class="display-4">Welcome</h1>
             </div>
-            <div>
+            <div class="text-center">
                 <p>To purchase the WorkPoint365 SaaS offer in <a href="https://docs.microsoft.com/en-us/azure/marketplace">Azure Marketplace</a></p>
-                
-                <ul>
-                    <li>Search for <b> WorkPoint365 </b> offers</li>
-                    <li>Click <b> Create</b> to subscribe to the offer, specifying your Azure Resource Group and Billing details.</li>
-                    <li>After the subscription created, click <b>Configure Account </b> to initiate the fulfillment process</li>
-                </ul>
+
+                <div class="d-flex flex-row">
+                    <div class="flex-fill"></div>
+                    <div class="flex-grow-0 text-start">
+                        <ul>
+                            <li>Search for <b> WorkPoint365 </b> offers</li>
+                            <li>Click <b> Create</b> to subscribe to the offer, specifying your Azure Resource Group and Billing details.</li>
+                            <li>After the subscription created, click <b>Configure Account </b> to initiate the fulfillment process</li>
+                        </ul>
+                    </div>
+                    <div class="flex-fill"></div>
+                </div>
+
+                <p>For all questions about WorkPoint365 services and subscriptions, contact <a href="https://workpoint365.com/products-solutions/workpoint-365">WorkPoint Sales <i class="fa fa-external-link" aria-hidden="true"></i></a></p>
+
+                <img src="~/imgs/wp-image-installer.png" alt="WorkPoint365"/>
+
             </div>
         </div>
     </div>
