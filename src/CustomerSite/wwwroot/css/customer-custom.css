@@ -283,15 +283,19 @@ dl.row .p-2 {
 
 
 .cm-button-default {
-    
     background-color: rgb(247, 148, 30);
-    
 }
 
-    .cm-button-default:hover {
-        background-color: rgb(223, 134, 27);
-        color: #fff;
-    }
+.cm-button-default:hover {
+    background-color: rgb(223, 134, 27);
+    color: #fff;
+}
+
+a.cm-button-default {
+    color: #fff;
+    padding: 5px 10px 5px 10px;
+    margin: 5px 0px 5px 5px;
+}
 
 .cm-button-disabled, .cm-button-disabled:hover {
     background-color: #efefef;

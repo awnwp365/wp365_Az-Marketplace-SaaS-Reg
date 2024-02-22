@@ -384,13 +384,14 @@ public class WebHookHandler : IWebhookHandler
             {
                 SubscriptionAuditLogs auditLog = new SubscriptionAuditLogs()
                 {
-                    Attribute = $"{Convert.ToString(SubscriptionLogAttributes.Status)}-RefreshAsync",
+                    Attribute = "RefreshAsync",
                     SubscriptionId = oldValue.SubscribeId,
                     OldValue = Convert.ToString(oldValue.SubscriptionStatus),
-                    NewValue = Convert.ToString(oldValue.SubscriptionStatus),
+                    NewValue = Convert.ToString(subscriptionData.SaasSubscriptionStatus),
                     CreateBy = null,
                     CreateDate = DateTime.Now,
                 };
+                this.subscriptionsLogRepository.Save(auditLog);
                 //update the subscription in the using the data retrieved from fulfillment API.
                 this.subscriptionService.AddOrUpdatePartnerSubscriptions(subscriptionData);
             }
